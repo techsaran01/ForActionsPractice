@@ -1,0 +1,12 @@
+name: first-workflow
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print Greeting"
+        run: echo "Hello world.."
+      - name: "Done"
+        run: echo "Successfully completed..."
+        
+      
