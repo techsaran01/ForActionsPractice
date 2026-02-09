@@ -12,7 +12,14 @@ jobs:
         with:
           node-version: 18
         
-      -
+      - name: "Install dependencies"
+        # run: npm install
+        run: npm ci  # is installs the dependencies with the versions locked/specified in the package-lock.json
+
+      - name: "Test Run"
+        run: npm test
+
+        
 
       
           
