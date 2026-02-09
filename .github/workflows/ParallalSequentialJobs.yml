@@ -1,17 +1,20 @@
-name: "Test Project"
+name: "MultipleJobsTrail"
 on: push
-jobs: 
+jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: "Test 1"
+        run: echo "test"   
+
       - name: "GetCode"
         uses: actions/checkout@v3
-        
+			 
       - name: "Install Node JS"
         uses: actions/setup-node@v3
         with:
           node-version: 18
-        
+			 
       - name: "Install dependencies"
         # run: npm install
         run: npm ci  # is installs the dependencies with the versions locked/specified in the package-lock.json
@@ -24,25 +27,33 @@ jobs:
           echo "Trail message by multiline command" 
           pwd
           echo "Last line of multi line command"
-
       - name: "Test Run"
         run: npm test
 
-  Second-job:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: "Testing a second job in workflow"
-        run: echo "Step 1 from second job"
+      - name: "Test"
+        run: echo "trail"
 
-      - name: "Second job ends here"
-        run: echo "End of second job"
-  
-# these jobs will run in parallel by default
+      - name: "GetCode"
+        uses: actions/checkout@v3
+			 
+      - name: "Install Node JS"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+			 
+      - name: "Install dependencies"
+        # run: npm install
+        run: npm ci  # is installs the dependencies with the versions locked/specified in the package-lock.json
 
+      - name: "Build Project"
+        run: npm run build
+       
+      - name: "Deploy Project"
+        run: echo "Deploying ...."
 
-
-        
-
-      
-          
-      
+      - name: "End"
+        run: echo "Deployment completed ...."
+	   
