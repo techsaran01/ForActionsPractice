@@ -28,6 +28,15 @@ jobs:
       - name: "Test Run"
         run: npm test
 
+  Second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Testing a second job in workflow"
+        run: echo "Step 1 from second job"
+
+      - name: "Second job ends here"
+        run: echo "End of second job"
+  
 
         
 
