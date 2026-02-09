@@ -16,9 +16,15 @@ jobs:
         # run: npm install
         run: npm ci  # is installs the dependencies with the versions locked/specified in the package-lock.json
 
+      - name: "Executing the audit"
+        # run: npm install
+        run: |
+          npm audit  
+          echo "Trail message by multiline command" 
+
       - name: "Test Run"
         run: npm test
-        
+
 
         
 
