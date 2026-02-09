@@ -19,8 +19,11 @@ jobs:
       - name: "Executing the audit"
         # run: npm install
         run: |
-          npm audit  
+          echo "Line one of multi line command"
+          ls -lrt
           echo "Trail message by multiline command" 
+          pwd
+          echo "Last line of multi line command"
 
       - name: "Test Run"
         run: npm test
