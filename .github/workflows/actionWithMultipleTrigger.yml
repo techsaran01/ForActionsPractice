@@ -1,4 +1,6 @@
 name: workflow_Multiple_trigger
+run-name: “workflow executed by @$ {{github.actor}}” # Defining how it will look like in github UI
+
 on: [push, workflow_dispatch]
 jobs:
   first-job:
