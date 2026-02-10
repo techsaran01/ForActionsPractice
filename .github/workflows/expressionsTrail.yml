@@ -1,4 +1,4 @@
-name: first-workflow
+name: Expressions-Trail-workflow
 on: workflow_dispatch
 jobs:
   expTrail:
