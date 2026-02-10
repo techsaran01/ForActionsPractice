@@ -1,5 +1,5 @@
 name: workflow_Multiple_trigger_for_selected_branch
-run-name: “workflow executed by @$ {{github.actor}}” # Defining how it will look like in github UI
+run-name: “workflow executed by @${{github.actor}}” # Defining how it will look like in github UI
 
 on:
   push:
@@ -19,10 +19,12 @@ jobs:
     steps:
       - name: "Print event_name"
         run: echo "This workflow was triggered by a ${{ github.event_name }} event" 
-      - name: "Print Greeting"
+      - name: "Actor"
         run: echo "The triggering actor is ${{ github.triggering_actor }}"
-      - name: "Print Greeting"
-        run: echo "This workflow was triggered by actor-  ${{ github.actor }}" 
+      - name: "Pushed to branch"
+        run:  |
+          BRANCH_NAME=${{ github.head_ref || github.ref_name }}
+          echo "File updated-  ${{ github.path }} in $BRANCH_NAME branch " 
       - name: "Done"
         run: echo "Successfully completed..."
         
