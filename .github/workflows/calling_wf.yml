@@ -1,4 +1,4 @@
-name: callable
+name: callingWF
 on: workflow_dispatch
 jobs:
   call_with_all_values:
