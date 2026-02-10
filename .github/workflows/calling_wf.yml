@@ -1,0 +1,29 @@
+name: callable
+on: workflow_dispatch
+jobs:
+  call_with_all_values:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Calling sub workflow"
+        uses: ./.github/workflow/callable_wf.yml
+        with:
+          ENV_NAME: prod
+          LOOKUP_PATH: myPathName
+          NON_MANDAT_VAL: "from calling workflow"
+          
+      - name: "Done"
+        run: echo "Successfully completed..."
+
+  call_with_only_mandory_values:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Calling sub workflow"
+        uses: ./.github/workflow/callable_wf.yml
+        with:
+          ENV_NAME: prod
+          LOOKUP_PATH: myPathName
+
+      - name: "Done"
+        run: echo "Successfully completed..."
+        
+      

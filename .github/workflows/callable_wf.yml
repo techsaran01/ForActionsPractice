@@ -1,0 +1,34 @@
+name: callable
+on: 
+  workflow_call:
+    inputs:
+      ENV_NAME:
+        description: "Environment Name"
+        required: true
+        type: string
+      
+      LOOKUP_PATH:
+        description: "Path to look up"
+        required: true
+        type: string
+
+      NON_MANDAT_VAL:
+        description: "Non mandatory variable"
+        required: false
+        type: string
+        default: "DefaultValue"
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print environment name from input"
+        run: echo "Environment name from input - ${{inputs.ENV_NAME}}"
+      - name: "Print Lookup path from input"
+        run: echo "Lookup path from input - ${{inputs.ENV_NAME}}"
+      - name: "Print Non-mandatory variable from input"
+        run: echo "Value of Non-mandatory variable is - ${{inputs.ENV_NAME}}"
+      - name: "Done"
+        run: echo "Successfully completed..."
+        
+      
