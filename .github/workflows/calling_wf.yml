@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Calling sub workflow"
-        uses: ./.github/workflow/callable_wf.yml
+        uses: ./.github/workflows/callable_wf.yml
         with:
           ENV_NAME: prod
           LOOKUP_PATH: myPathName
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Calling sub workflow"
-        uses: ./.github/workflow/callable_wf.yml
+        uses: ./.github/workflows/callable_wf.yml
         with:
           ENV_NAME: prod
           LOOKUP_PATH: myPathName
