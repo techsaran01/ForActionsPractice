@@ -1,0 +1,27 @@
+name: workflow_Multiple_trigger
+run-name: “workflow executed by @$ {{github.actor}}” # Defining how it will look like in github UI
+
+on:
+  push:
+    branches:
+      - prod
+    paths:
+      - 'src/**/*.txt'
+
+  workflow_dispatch:
+       
+    
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print event_name"
+        run: echo "This workflow was triggered by a ${{ github.event_name }} event" 
+      - name: "Print Greeting"
+        run: echo "The triggering actor is ${{ github.triggering_actor }}"
+      - name: "Print Greeting"
+        run: echo "This workflow was triggered by actor-  ${{ github.actor }}" 
+      - name: "Done"
+        run: echo "Successfully completed..."
+        
+      
