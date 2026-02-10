@@ -24,7 +24,7 @@ jobs:
       - name: "Pushed to branch"
         run:  |
           BRANCH_NAME=${{ github.head_ref || github.ref_name }}
-          echo "File updated-  ${{ github.path }} in $BRANCH_NAME branch " 
+          echo "File updated in '$BRANCH_NAME' branch " 
       - name: "Done"
         run: echo "Successfully completed..."
         
