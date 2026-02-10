@@ -13,8 +13,8 @@ jobs:
     name: "Calling sub workflow"
     uses: ./.github/workflows/callable_wf.yml
     with:
-      ENV_NAME: prod
-      LOOKUP_PATH: myPathName
+      ENV_NAME: Dev
+      LOOKUP_PATH: myDevPathName
 
   Finalize:
     needs: [call_with_all_values, call_with_only_mandory_values]
