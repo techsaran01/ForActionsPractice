@@ -1,0 +1,16 @@
+name: workflow_Multiple_trigger
+on: [push, workflow_dispatch]
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print event_name"
+        run: echo "This workflow was triggered by a ${{ github.event_name }} event" 
+      - name: "Print Greeting"
+        run: echo "The triggering actor is ${{ github.triggering_actor }}"
+      - name: "Print Greeting"
+        run: echo "This workflow was triggered by actor-  ${{ github.actor }}" 
+      - name: "Done"
+        run: echo "Successfully completed..."
+        
+      
