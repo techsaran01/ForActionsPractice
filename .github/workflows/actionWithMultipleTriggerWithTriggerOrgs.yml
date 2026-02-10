@@ -1,10 +1,12 @@
-name: workflow_Multiple_trigger
+name: workflow_Multiple_trigger_for_selected_branch
 run-name: “workflow executed by @$ {{github.actor}}” # Defining how it will look like in github UI
 
 on:
   push:
     branches:
       - prod
+      - main
+
     paths:
       - 'src/**/*.txt'
 
