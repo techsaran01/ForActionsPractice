@@ -4,7 +4,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      script-file-name: ${{steps.stepId1.outputs.step-out-identifier}}   
+      plain-text: ${{steps.stepId1.outputs.msg}}  
+      script-file-name: ${{steps.stepId2.outputs.step-out-identifier}}   
+
     steps:
       - name: "GetCode"
         uses: actions/checkout@v4
@@ -20,13 +22,16 @@ jobs:
 
       - name: "Build website"
         run: npm run build
+      
+      - name: "Publish plain text as output"
+        id: stepId1 
+        run: echo "msg=plain text for test" >> "$GITHUB_OUTPUT"
 
       - name: "Publish file-name as output"
-        id: stepId1         
-        # run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = {}' >>  $GITHUB_OUTPUT ';'
-        run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = "Hello-world"' >>  $GITHUB_OUTPUT ';'
+        id: stepId2         
+        run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = {}' >>  $GITHUB_OUTPUT ';'
+        #run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = "Hello-world"' >>  $GITHUB_OUTPUT ';'
         #run: find dist/assets/*.js -type f -execdir echo '::set-output  name=step-out-identifier::{}' ';'
-
 
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@v4
@@ -45,6 +50,8 @@ jobs:
 
       - name: "list artifact contents"
         run: ls
+      - name: “Print the plain-text output value from previous job”
+        run: echo “${{ needs.build.outputs.plain-text }}”
 
       - name: “Print the output value from previous job”
         run: echo “${{ needs.build.outputs.script-file-name }}”
