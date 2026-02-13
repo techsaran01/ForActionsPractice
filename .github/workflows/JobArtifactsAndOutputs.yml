@@ -23,9 +23,9 @@ jobs:
 
       - name: "Publish file-name as output"
         id: stepId
-        run: find dist/assests/*.js -type f -execdir echo 'step-out-identifier = {}' >>  $GITHUB_OUTPUT ';'
-        # run: find dist/assests/*.js -type f -execdir echo 'step-out-identifier = Hello-world' >>  $GITHUB_OUTPUT ':'
-				# run: find dist/assests/*.js -type f -execdir echo '::set-output  name= step-out-identifier:: {}' ';'
+        run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = {}' >>  $GITHUB_OUTPUT ';'
+        # run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = Hello-world' >>  $GITHUB_OUTPUT ':'
+				# run: find dist/assets/*.js -type f -execdir echo '::set-output  name= step-out-identifier:: {}' ';'
 
 
       - name: "Upload Artifacts"
