@@ -23,7 +23,10 @@ jobs:
 
       - name: "Publish file-name as output"
         id: stepId
-        run: find dist/assests/*.js -type f -execdir echo ‘step-out-identifier = {}’ >>  $GITHUB_OUTPUT‘:’
+        run: find dist/assests/*.js -type f -execdir echo 'step-out-identifier = {}' >>  $GITHUB_OUTPUT';'
+        # run: find dist/assests/*.js -type f -execdir echo 'step-out-identifier = Hello-world' >>  $GITHUB_OUTPUT ':'
+				# run: find dist/assests/*.js -type f -execdir echo '::set-output  name= step-out-identifier:: {}' ';'
+
 
       - name: "Upload Artifacts"
         uses: actions/upload-artifact@v4
@@ -45,7 +48,7 @@ jobs:
 
       - name: “Print the output value from previous job”
         run: echo “${{needs.build-job.output.script-file-name }}”
-        
+
   
 # these jobs will run in parallel by default
 
