@@ -1,0 +1,54 @@
+name: "Job Artifacts Trail"
+on: push
+jobs: 
+  build-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "GetCode"
+        uses: actions/checkout@v3
+        
+      - name: "Install Node JS"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+        
+      - name: "Install dependencies"
+        # run: npm install
+        run: npm ci  # is installs the dependencies with the versions locked/specified in the package-lock.json
+
+      - name: "Build website"
+        run: npm run build
+
+      - name: "Upload Artifacts"
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files # our choice
+          path: |
+            dist           
+            package.json
+            buildFiles/executables 
+            data
+            !data/**/*.tmp   
+            # excluding temp files with extention (.tmp)
+
+  Deploy-job:
+    needs: build-job
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Get artifacts"
+        uses: actions/download-artifacts@v3
+        with:
+          name: dist-files
+
+      - name: "list artifact contents"
+        run: ls
+  
+# these jobs will run in parallel by default
+
+
+
+        
+
+      
+          
+      

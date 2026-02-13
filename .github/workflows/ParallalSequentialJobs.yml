@@ -1,4 +1,4 @@
-name: "MultipleJobsTrail"
+name: "ParallelSequentialJobs"
 on: push
 jobs:
   test:
