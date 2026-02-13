@@ -1,10 +1,10 @@
 name: "Job Artifacts and outputs Trail"
 on: push
 jobs: 
-  build-job:
+  build:
     runs-on: ubuntu-latest
     outputs:
-      script-file-name: ${{steps.stepId.outputs.step-out-identifier}}   
+      script-file-name: ${{steps.stepId1.outputs.step-out-identifier}}   
     steps:
       - name: "GetCode"
         uses: actions/checkout@v4
@@ -22,9 +22,9 @@ jobs:
         run: npm run build
 
       - name: "Publish file-name as output"
-        id: stepId         
-        run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = {}' >>  $GITHUB_OUTPUT ';'
-        # run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = "Hello-world"' >>  $GITHUB_OUTPUT ';'
+        id: stepId1         
+        # run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = {}' >>  $GITHUB_OUTPUT ';'
+        run: find dist/assets/*.js -type f -execdir echo 'step-out-identifier = "Hello-world"' >>  $GITHUB_OUTPUT ';'
         #run: find dist/assets/*.js -type f -execdir echo '::set-output  name=step-out-identifier::{}' ';'
 
 
@@ -34,8 +34,8 @@ jobs:
           name: dist-files # our choice
           path: dist           
 
-  Deploy-job:
-    needs: build-job
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: "Get artifacts"
@@ -47,7 +47,7 @@ jobs:
         run: ls
 
       - name: “Print the output value from previous job”
-        run: echo “${{ needs.build-job.outputs.script-file-name }}”
+        run: echo “${{ needs.build.outputs.script-file-name }}”
 
   
 # these jobs will run in parallel by default
