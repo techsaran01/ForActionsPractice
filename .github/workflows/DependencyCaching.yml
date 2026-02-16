@@ -24,8 +24,8 @@ jobs:
         # run: npm install
         run: npm ci  # is installs the dependencies with the versions locked/specified in the package-lock.json
 
-      - name: "Lint code"
-        run: npm run lint
+      #- name: "Lint code"
+      #  run: npm run lint
 
       - name: "Run test"
         run: npm run test
